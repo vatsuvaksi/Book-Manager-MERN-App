@@ -4,7 +4,7 @@
   "description": "This is a Book Manager App",
   "main": "server.js",
   "scripts": {
-   "server": "nodemon back-end/server.js"
+    "server": "nodemon back-end/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vatsuvaksi/Book-Manager-MERN-App#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "mongoose": "^5.12.0"
   }
