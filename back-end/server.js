@@ -1,5 +1,21 @@
 const express = require("express"); //Imports the express package from node modules
 const app = express(); //functions are first class citizens hence assigning it to a constant for ease
+const mongoose  = require("mongoose"); // Imports Mongoose
+
+//            <------------Connecting to Mongoose---------------->
+//ID and Password for authentication
+// Id vatsuvaksi
+//password-----pgkgYGHHNXEVWC6O
+const dbUrl ='mongodb+srv://vatsuvaksi:pgkgYGHHNXEVWC6O@cluster0.jmgua.mongodb.net/Book-Manager';
+mongoose.connect(dbUrl,{             //Mongoose configuration
+    useFindAndModify:true,
+    useUnifiedTopology : true,
+    useCreateIndex: true,
+    useNewUrlParser : true
+}).then(function(){
+    console.log("DB Connected");
+});
+
 
 //            <------------Routes---------------->
 //------Users Routes-------
