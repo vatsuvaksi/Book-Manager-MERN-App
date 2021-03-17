@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//Creating a Schema for the models 
+//Creating a Schema for the models
 //--User
 const userSchema = new mongoose.Schema({           //Schema is the representation of the Model how we want the data and we can set different constraints through the same
 name :{
@@ -9,7 +9,8 @@ name :{
 },
 email :{
     type :String,
-    required: true
+    required: true,
+    unique: true
 },
 password :{
     type : String,
