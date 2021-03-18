@@ -6,7 +6,7 @@ const userRoute = express.Router();                    //Creates Routes for the 
 //------Users Routes-------
 
 //Register user
-userRoute.post("/register", async function (req, res) {
+userRoute.post("/", async function (req, res) {
   try {
     var name = req.body.name;
     var email = req.body.email;
@@ -29,7 +29,7 @@ userRoute.post("/register", async function (req, res) {
 userRoute.post("/login",  async function (req, res) {          //Check authentication 
     const  email = req.body.email;
     const password = req.body.password;
-    const user =await User.findOne({email});
+    const user =await User.findOne({email : email});
     if(user && (await user.isPasswordMatched(password))){
     //  res.status(200);                                    //if the user exists then it generates the status as okay
       
@@ -50,7 +50,28 @@ userRoute.post("/login",  async function (req, res) {          //Check authentic
 });
 
 //Update routes
-userRoute.put("/update", function (req, res) {
+userRoute.put("/update",async function (req, res) {
+  const user = await User.findById(req.user.id);
+  if(user){
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    //This will encrypt automatically
+    if(req.body.password){
+      user.password = req.body.password || user.password;
+    }
+    const updateUser = await user.save();
+    res.json({
+      _id:updatedUser._id ,
+      name : updatedUser.name , 
+      password : updatedUser.password ,
+       email : updatedUser.email,
+       token : generateTokens(updatedUser._id)
+    
+    });
+  }else{
+    res.status(404);
+  }
+
   res.send("update routes");
 });
 //Delete route
@@ -60,8 +81,10 @@ userRoute.delete("/:id", function (req, res) {
 });
 
 //Fetch Users routes
-userRoute.get("/", function (req, res) {
-  res.send("Fetching users");
+userRoute.get("/",async function (req, res) {
+  const users = await User.find().populate('books');
+  res.json(users);
+  
 });
 
 module.exports = userRoute;

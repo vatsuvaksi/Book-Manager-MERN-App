@@ -15,4 +15,18 @@ bookRoute.post('/', async function(req,res){
     }
 });
 
+
+bookRoute.get('/', async function(req,res){
+    const book = await Book.find({});
+
+    if(book){
+        res.status(200);
+        res.json(book);
+    }else{
+        res.status(500);
+        res.send("Creating fail");
+    }
+});
+
+
 module.exports = bookRoute;
