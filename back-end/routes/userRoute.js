@@ -18,8 +18,25 @@ userRoute.post("/register", async function (req, res) {
 });
 
 //Login Route
-userRoute.post("/login", function (req, res) {
-  res.send("login routes");
+userRoute.post("/login",  async function (req, res) {          //Check authentication 
+    const  email = req.body.email;
+    const password = req.body.password;
+    const user =await User.findOne({email});
+    if(user){
+      res.status(200);                                    //if the user exists then it generates the status as okay
+      res.send(user);
+      res.json({
+        _id:user.id ,
+         name : user.name , 
+         password : user.password ,
+          email : user.email
+        });
+    }else{
+      res.status(401)                            //if the user does not exist then it generates the status as 401 or not found
+      //console.log();
+      res.send('User not Found');
+    }
+//  res.send("login routes");
 });
 
 //Update routes
