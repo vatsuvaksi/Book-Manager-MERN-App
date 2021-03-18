@@ -6,7 +6,7 @@ const generateTokens = function (userId) {
     {
       id: userId,
     },
-    "nodejs",
+  "nodejs",
     {
       expiresIn: "30d",
     }
