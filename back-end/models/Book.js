@@ -3,7 +3,7 @@ const mongoose  = require('mongoose');
 
 //Creating a Schema for the models
 //--Books
-const bookSchema = new mongoose.schema({
+const bookSchema = new mongoose.Schema({
     category : {
         type : String,
         required : [true,'Book Category is required']
@@ -22,7 +22,7 @@ const bookSchema = new mongoose.schema({
         required : true
     }
 }, {
-    timestamps : true
+    timestamps : true                       // Timestamp is true 
 });
 
 const Book =mongoose.model("Book",bookSchema);
