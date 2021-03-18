@@ -35,15 +35,17 @@ bookRoute.get('/', async function(req,res){
 });
 
 
-//Delete books by id 
+//Delete books by id
 bookRoute.delete('/:id', async function(req,res){
     const book = await Book.findByIdAndDelete(req.params.id);
+    if(book){
+
         res.status(200);
         res.json(book);
-  
+    }else{
         res.status(500);
         res.send("Creating fail");
-    
+    }
 });
 
 //Update books by id 
