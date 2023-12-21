@@ -5,7 +5,7 @@ const dbConnect = function() {
 //ID and Password for authentication
 // Id vatsuvaksi
 //password-----pgkgYGHHNXEVWC6O
-const dbUrl ='mongodb+srv://vatsuvaksi:pgkgYGHHNXEVWC6O@cluster0.jmgua.mongodb.net/Book-Manager';
+const dbUrl ='somedb url';
 mongoose.connect(dbUrl,{             //Mongoose configuration
     useFindAndModify:true,
     useUnifiedTopology : true,
